@@ -1,0 +1,20 @@
+PODS:
+  - Reveal-iOS-SDK (1.6.2)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Reveal-iOS-SDK
+  - SDWebImage (~> 3.8)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: ad8696b80bc30563ff694f0b15afad671d7a8cdd
+
+COCOAPODS: 1.2.0

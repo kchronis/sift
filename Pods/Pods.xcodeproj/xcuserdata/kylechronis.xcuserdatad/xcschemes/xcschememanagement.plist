@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Sift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SiftTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SiftUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>02A1055100E5F4B3363F39EDA338CDA3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>206A49D3F3A20B86436DAF1716E4BBE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BFF62EAB457C19FA00784C896213CB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAC1B79884369F21CCBE4460AF572923</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED76F4399382C7D6AC3276C22C7993E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
