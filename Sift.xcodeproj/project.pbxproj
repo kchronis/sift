@@ -8,20 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		602B009C2766C9655FCF10A1 /* Pods_FilterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5B7314CB01CB8BF9AAA5FC /* Pods_FilterUITests.framework */; };
-		790978221E5BB4DF001CC012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978211E5BB4DF001CC012 /* AppDelegate.swift */; };
-		790978241E5BB4DF001CC012 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978231E5BB4DF001CC012 /* TimelineViewController.swift */; };
-		790978271E5BB4DF001CC012 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 790978251E5BB4DF001CC012 /* Main.storyboard */; };
-		790978291E5BB4DF001CC012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 790978281E5BB4DF001CC012 /* Assets.xcassets */; };
-		7909782C1E5BB4DF001CC012 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7909782A1E5BB4DF001CC012 /* LaunchScreen.storyboard */; };
 		790978371E5BB4DF001CC012 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978361E5BB4DF001CC012 /* SiftTests.swift */; };
 		790978421E5BB4DF001CC012 /* SiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978411E5BB4DF001CC012 /* SiftUITests.swift */; };
-		790978531E5BC458001CC012 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978521E5BC458001CC012 /* Tweet.swift */; };
-		790978551E5BC47F001CC012 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978541E5BC47F001CC012 /* User.swift */; };
-		79257A451E5E8FCE00226D61 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79257A441E5E8FCE00226D61 /* AccountService.swift */; };
-		797806D51E61EB1D002AFF86 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797806D41E61EB1D002AFF86 /* OnboardingViewController.swift */; };
-		797806D71E61EB4F002AFF86 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797806D61E61EB4F002AFF86 /* OnboardingView.swift */; };
-		797806DA1E6234CA002AFF86 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797806D91E6234CA002AFF86 /* TweetTableViewCell.swift */; };
-		79CB349C1E5D4D1500DD17CC /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB349B1E5D4D1500DD17CC /* TimelineService.swift */; };
+		7921D6281E75F31D00B7A207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6271E75F31D00B7A207 /* User.swift */; };
+		7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6291E75F33F00B7A207 /* Tweet.swift */; };
+		7921D62C1E75F34A00B7A207 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62B1E75F34A00B7A207 /* Account.swift */; };
+		7921D62F1E75F35C00B7A207 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62D1E75F35C00B7A207 /* AccountService.swift */; };
+		7921D6301E75F35C00B7A207 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62E1E75F35C00B7A207 /* TimelineService.swift */; };
+		7921D6321E75F36E00B7A207 /* UIButton+ BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6311E75F36E00B7A207 /* UIButton+ BackgroundColor.swift */; };
+		7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6331E75F38500B7A207 /* LoginViewController.swift */; };
+		7921D6371E75F38500B7A207 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6341E75F38500B7A207 /* OnboardingView.swift */; };
+		7921D6381E75F38500B7A207 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6351E75F38500B7A207 /* OnboardingViewController.swift */; };
+		7921D63A1E75F39200B7A207 /* QuotedTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6391E75F39200B7A207 /* QuotedTweetView.swift */; };
+		7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */; };
+		7921D63E1E75F3AD00B7A207 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D63D1E75F3AD00B7A207 /* TweetTableViewCell.swift */; };
+		7921D6401E75F3B800B7A207 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D63F1E75F3B800B7A207 /* AppDelegate.swift */; };
+		7921D6421E75F3D400B7A207 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7921D6411E75F3D400B7A207 /* Info.plist */; };
+		7921D6441E75F3E000B7A207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7921D6431E75F3E000B7A207 /* Assets.xcassets */; };
+		79A93F131E75F43D00E33EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A93F0F1E75F43D00E33EA9 /* LaunchScreen.storyboard */; };
+		79A93F141E75F43D00E33EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A93F111E75F43D00E33EA9 /* Main.storyboard */; };
 		864752C00D10A22A9614197D /* Pods_SiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A67B6C76C70B0F2D0C0D47 /* Pods_SiftTests.framework */; };
 		CD82BB6FF178C573525FB196 /* Pods_FilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B81C4969A4159F449069DE /* Pods_FilterTests.framework */; };
 		E2D7B9B7DD9A49218A60A02C /* Pods_Sift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8247A835D0A18A035AF54482 /* Pods_Sift.framework */; };
@@ -55,25 +60,29 @@
 		6F6EAFC3D1D813AC18943C59 /* Pods-FilterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilterUITests/Pods-FilterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		76675A21DA1995A4964D5AA7 /* Pods-FilterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilterUITests/Pods-FilterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7909781E1E5BB4DF001CC012 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		790978211E5BB4DF001CC012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		790978231E5BB4DF001CC012 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TimelineViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		790978261E5BB4DF001CC012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		790978281E5BB4DF001CC012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7909782B1E5BB4DF001CC012 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7909782D1E5BB4DF001CC012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		790978321E5BB4DF001CC012 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		790978361E5BB4DF001CC012 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SiftTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		790978381E5BB4DF001CC012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7909783D1E5BB4DF001CC012 /* SiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		790978411E5BB4DF001CC012 /* SiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SiftUITests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		790978431E5BB4DF001CC012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		790978521E5BC458001CC012 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Tweet.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		790978541E5BC47F001CC012 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = User.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		79257A441E5E8FCE00226D61 /* AccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
-		797806D41E61EB1D002AFF86 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		797806D61E61EB4F002AFF86 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		797806D91E6234CA002AFF86 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
-		79CB349B1E5D4D1500DD17CC /* TimelineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
+		7921D6271E75F31D00B7A207 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Sift/User.swift; sourceTree = SOURCE_ROOT; };
+		7921D6291E75F33F00B7A207 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tweet.swift; path = Sift/Tweet.swift; sourceTree = SOURCE_ROOT; };
+		7921D62B1E75F34A00B7A207 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Sift/Account.swift; sourceTree = SOURCE_ROOT; };
+		7921D62D1E75F35C00B7A207 /* AccountService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountService.swift; path = Sift/AccountService.swift; sourceTree = SOURCE_ROOT; };
+		7921D62E1E75F35C00B7A207 /* TimelineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineService.swift; path = Sift/TimelineService.swift; sourceTree = SOURCE_ROOT; };
+		7921D6311E75F36E00B7A207 /* UIButton+ BackgroundColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+ BackgroundColor.swift"; path = "Sift/UIButton+ BackgroundColor.swift"; sourceTree = SOURCE_ROOT; };
+		7921D6331E75F38500B7A207 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Sift/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		7921D6341E75F38500B7A207 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Sift/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
+		7921D6351E75F38500B7A207 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Sift/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
+		7921D6391E75F39200B7A207 /* QuotedTweetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotedTweetView.swift; path = Sift/QuotedTweetView.swift; sourceTree = SOURCE_ROOT; };
+		7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = Sift/TimelineViewController.swift; sourceTree = SOURCE_ROOT; };
+		7921D63D1E75F3AD00B7A207 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = Sift/TweetTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		7921D63F1E75F3B800B7A207 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sift/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		7921D6411E75F3D400B7A207 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sift/Info.plist; sourceTree = SOURCE_ROOT; };
+		7921D6431E75F3E000B7A207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sift/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		79A93F101E75F43D00E33EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Sift/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		79A93F121E75F43D00E33EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Sift/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		8247A835D0A18A035AF54482 /* Pods_Sift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C48E6C9378FD5BCF169E583 /* Pods-Sift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sift/Pods-Sift.debug.xcconfig"; sourceTree = "<group>"; };
 		90E2FD908F4CDCE94952A143 /* Pods-Filter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filter/Pods-Filter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,15 +169,16 @@
 		790978201E5BB4DF001CC012 /* Sift */ = {
 			isa = PBXGroup;
 			children = (
+				79D708B51E710B0000FEE7BD /* Extensions */,
 				79CB349A1E5D4D0100DD17CC /* Services */,
 				790978511E5BC44E001CC012 /* Models */,
 				790978501E5BC449001CC012 /* Views */,
 				7909784F1E5BC179001CC012 /* Controllers */,
-				790978211E5BB4DF001CC012 /* AppDelegate.swift */,
-				790978251E5BB4DF001CC012 /* Main.storyboard */,
-				790978281E5BB4DF001CC012 /* Assets.xcassets */,
-				7909782A1E5BB4DF001CC012 /* LaunchScreen.storyboard */,
-				7909782D1E5BB4DF001CC012 /* Info.plist */,
+				7921D63F1E75F3B800B7A207 /* AppDelegate.swift */,
+				7921D6431E75F3E000B7A207 /* Assets.xcassets */,
+				7921D6411E75F3D400B7A207 /* Info.plist */,
+				79A93F0F1E75F43D00E33EA9 /* LaunchScreen.storyboard */,
+				79A93F111E75F43D00E33EA9 /* Main.storyboard */,
 			);
 			name = Sift;
 			path = Filter;
@@ -197,8 +207,9 @@
 		7909784F1E5BC179001CC012 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				790978231E5BB4DF001CC012 /* TimelineViewController.swift */,
-				797806D41E61EB1D002AFF86 /* OnboardingViewController.swift */,
+				7921D6331E75F38500B7A207 /* LoginViewController.swift */,
+				7921D6351E75F38500B7A207 /* OnboardingViewController.swift */,
+				7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -207,7 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				797806D81E623490002AFF86 /* Cells */,
-				797806D61E61EB4F002AFF86 /* OnboardingView.swift */,
+				7921D6341E75F38500B7A207 /* OnboardingView.swift */,
+				7921D6391E75F39200B7A207 /* QuotedTweetView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -215,8 +227,9 @@
 		790978511E5BC44E001CC012 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				790978521E5BC458001CC012 /* Tweet.swift */,
-				790978541E5BC47F001CC012 /* User.swift */,
+				7921D62B1E75F34A00B7A207 /* Account.swift */,
+				7921D6291E75F33F00B7A207 /* Tweet.swift */,
+				7921D6271E75F31D00B7A207 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -224,7 +237,7 @@
 		797806D81E623490002AFF86 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				797806D91E6234CA002AFF86 /* TweetTableViewCell.swift */,
+				7921D63D1E75F3AD00B7A207 /* TweetTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -232,10 +245,18 @@
 		79CB349A1E5D4D0100DD17CC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				79CB349B1E5D4D1500DD17CC /* TimelineService.swift */,
-				79257A441E5E8FCE00226D61 /* AccountService.swift */,
+				7921D62D1E75F35C00B7A207 /* AccountService.swift */,
+				7921D62E1E75F35C00B7A207 /* TimelineService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		79D708B51E710B0000FEE7BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7921D6311E75F36E00B7A207 /* UIButton+ BackgroundColor.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		EB289E3A1D4BFB90979E0440 /* Frameworks */ = {
@@ -328,6 +349,7 @@
 				TargetAttributes = {
 					7909781D1E5BB4DF001CC012 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GJ9R3GJ24B;
 						ProvisioningStyle = Automatic;
 					};
 					790978311E5BB4DF001CC012 = {
@@ -367,9 +389,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7909782C1E5BB4DF001CC012 /* LaunchScreen.storyboard in Resources */,
-				790978291E5BB4DF001CC012 /* Assets.xcassets in Resources */,
-				790978271E5BB4DF001CC012 /* Main.storyboard in Resources */,
+				79A93F131E75F43D00E33EA9 /* LaunchScreen.storyboard in Resources */,
+				7921D6421E75F3D400B7A207 /* Info.plist in Resources */,
+				7921D6441E75F3E000B7A207 /* Assets.xcassets in Resources */,
+				79A93F141E75F43D00E33EA9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,15 +555,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				790978551E5BC47F001CC012 /* User.swift in Sources */,
-				790978241E5BB4DF001CC012 /* TimelineViewController.swift in Sources */,
-				797806DA1E6234CA002AFF86 /* TweetTableViewCell.swift in Sources */,
-				790978531E5BC458001CC012 /* Tweet.swift in Sources */,
-				79257A451E5E8FCE00226D61 /* AccountService.swift in Sources */,
-				797806D51E61EB1D002AFF86 /* OnboardingViewController.swift in Sources */,
-				797806D71E61EB4F002AFF86 /* OnboardingView.swift in Sources */,
-				79CB349C1E5D4D1500DD17CC /* TimelineService.swift in Sources */,
-				790978221E5BB4DF001CC012 /* AppDelegate.swift in Sources */,
+				7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */,
+				7921D6371E75F38500B7A207 /* OnboardingView.swift in Sources */,
+				7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */,
+				7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */,
+				7921D63A1E75F39200B7A207 /* QuotedTweetView.swift in Sources */,
+				7921D6301E75F35C00B7A207 /* TimelineService.swift in Sources */,
+				7921D62C1E75F34A00B7A207 /* Account.swift in Sources */,
+				7921D6281E75F31D00B7A207 /* User.swift in Sources */,
+				7921D6381E75F38500B7A207 /* OnboardingViewController.swift in Sources */,
+				7921D6321E75F36E00B7A207 /* UIButton+ BackgroundColor.swift in Sources */,
+				7921D62F1E75F35C00B7A207 /* AccountService.swift in Sources */,
+				7921D6401E75F3B800B7A207 /* AppDelegate.swift in Sources */,
+				7921D63E1E75F3AD00B7A207 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,20 +603,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		790978251E5BB4DF001CC012 /* Main.storyboard */ = {
+		79A93F0F1E75F43D00E33EA9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				790978261E5BB4DF001CC012 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7909782A1E5BB4DF001CC012 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7909782B1E5BB4DF001CC012 /* Base */,
+				79A93F101E75F43D00E33EA9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		79A93F111E75F43D00E33EA9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79A93F121E75F43D00E33EA9 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -691,7 +718,8 @@
 			baseConfigurationReference = 8C48E6C9378FD5BCF169E583 /* Pods-Sift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Filter/Info.plist;
+				DEVELOPMENT_TEAM = GJ9R3GJ24B;
+				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Filter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,7 +732,8 @@
 			baseConfigurationReference = 361CB8EE833D03CEDC6BA4D6 /* Pods-Sift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Filter/Info.plist;
+				DEVELOPMENT_TEAM = GJ9R3GJ24B;
+				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Filter;
 				PRODUCT_NAME = "$(TARGET_NAME)";

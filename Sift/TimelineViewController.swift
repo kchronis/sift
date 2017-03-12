@@ -1,6 +1,6 @@
 //
 //  TimelineViewController.swift
-//  Filter
+//  Sift
 //
 //  Created by Kyle Chronis on 2/20/17.
 //  Copyright © 2017 Kyle Chronis. All rights reserved.
@@ -13,26 +13,41 @@ import SwiftyJSON
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let timelineURL = URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
+    let account : Account
     let tableView : UITableView = UITableView()
-    var tweets = [Any]()
+    var lastViewedTweet : Tweet?
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(handleRefresh(refreshControl:)),
+            for: .valueChanged
+        )
+        return refreshControl
+    }()
+    var tweets = [Tweet]()
     
-    init() {
+    init(account: Account) {
+        self.account = account
         super.init(nibName:nil, bundle:nil)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.allowsMultipleSelection = false
+        self.tableView.allowsSelection = false
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(UITableViewCell.self,
-                                forCellReuseIdentifier: "Cell")
+        self.tableView.register(TweetTableViewCell.self,
+                                forCellReuseIdentifier: "TweetCell")
         self.tableView.estimatedRowHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        self.tableView.addSubview(self.refreshControl)
         self.view.addSubview(self.tableView)
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
@@ -50,90 +65,58 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             )
         )
         
-        
-        getTimeLine()
+        self.getTimeLine()
     }
-    
     
     func reloadView() {
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
         self.view.layoutIfNeeded()
+        // should be scroll to last read
+        //self.scrollToBottom()
     }
     
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.getTimeLine()
+    }
+    
+    //MARK: TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tweets.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
         let row = indexPath.row
-        let tweet = self.tweets[row]
-        cell!.textLabel!.text = (tweet as AnyObject).object(forKey: "text") as? String
-        cell!.textLabel!.numberOfLines = 0
-        return cell!
+        let tweet : Tweet = self.tweets[row]
+        cell.resetCell(tweet: tweet)
+        return cell
+    }
+    
+    //MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        self.account.lastViewedTweetId = self.tweets[indexPath.row].id
     }
     
     func getTimeLine() {
-        
-        let account = ACAccountStore()
-        let accountType = account.accountType(
-            withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        
-        account.requestAccessToAccounts(with: accountType, options: nil, completion: {(success, error) in
-            
-            if success {
-                let arrayOfAccounts =
-                    account.accounts(with: accountType)
-                
-                if (arrayOfAccounts?.count)! > 0 {
-                    let twitterAccount = arrayOfAccounts?.last as! ACAccount
-                    // need to implement since_id, count (max is 200)
-                    let parameters = ["include_rts" : "1",
-                                      "trim_user" : "0", 
-                                      "count" : "20"]
-                    
-                    let postRequest = SLRequest(forServiceType:
-                        SLServiceTypeTwitter,
-                                                requestMethod: SLRequestMethod.GET,
-                                                url: self.timelineURL!,
-                                                parameters: parameters)
-                    
-                    postRequest?.account = twitterAccount
-                    
-                    postRequest?.perform(handler: {(responseData, urlResponse, error) in
-                        
-                        let json = JSON(data: responseData!)
-                        if json.count > 0 {
-                            self.tweets = json.arrayObject!
-                            print("TWEETS \(json)")
-                            if self.tweets.count != 0 {
-                                DispatchQueue.main.async() {
-                                    self.reloadView()
-                                }
-                            }
-                        }
-//                        do {
-//                            try self.tweets = JSONSerialization.jsonObject(with: responseData!,
-//                                                                               options: JSONSerialization.ReadingOptions.mutableLeaves) as! [AnyObject]
-//                            
-//                            print("TWEETS \(self.tweets)")
-//                            if self.tweets.count != 0 {
-//                                DispatchQueue.main.async() {
-//                                    self.reloadView()
-//                                }
-//                            }
-//                        } catch let error as NSError {
-//                            print("Data serialization error: \(error.localizedDescription)")
-//                        }
-                    })
-                }
-                else {
-                    print("No Linked Accounts")
-                }
-            } else {
-                print("Failed to access account")
+        TimelineService.getTimeLine(
+        account: self.account) { (result : TimelineServiceResult<Array<Tweet>>) in
+            switch result  {
+            case .success(let tweets):
+                self.tweets = tweets
+                self.reloadView()
+            case .failure(let error):
+                print("ERROR \(error)")
             }
-        })
+        }
+    }
+    
+    private func scrollToBottom() {
+        let indexPath = IndexPath(row: self.tweets.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 }
 

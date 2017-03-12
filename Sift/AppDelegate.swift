@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Filter
+//  Sift
 //
 //  Created by Kyle Chronis on 2/20/17.
 //  Copyright © 2017 Kyle Chronis. All rights reserved.
@@ -16,8 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        self.window?.rootViewController = TimelineViewController()
+        let baseNavigationController =  UINavigationController(
+            rootViewController: LoginViewController()
+        )
+        self.window?.rootViewController = baseNavigationController
+        self.window?.makeKeyAndVisible()
+        if let account = Account.loadAccount() {
+            let timelineNavigationController = UINavigationController(
+                rootViewController: TimelineViewController(account: account)
+            )
+            baseNavigationController.present(
+                timelineNavigationController,
+                animated: false,
+                completion: nil
+            )
+        }
         return true
     }
 

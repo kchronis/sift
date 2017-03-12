@@ -15,15 +15,15 @@ enum AccountServiceError: Error {
 }
 
 enum AccountServiceResult<T> {
-    case Success(T)
-    case Failure(AccountServiceError)
+    case success(T)
+    case failure(AccountServiceError)
 }
 
-typealias CompletionHandler = (Result<Array<ACAccount>>) -> Void
+typealias AccountServiceCompletionHandler = (AccountServiceResult<Array<ACAccount>>) -> Void
 
 class AccountService {
     
-    class func getAccounts(completionHandler: @escaping CompletionHandler) {
+    class func getAccounts(completionHandler: @escaping AccountServiceCompletionHandler) {
         
         let account = ACAccountStore()
         let accountType = account.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
@@ -31,12 +31,13 @@ class AccountService {
                                         options: nil,
                                         completion: {(success, error) in
             if success {
-                let arrayOfAccounts =
-                    account.accounts(with: accountType)
+                let arrayOfAccounts = account.accounts(with: accountType)
                 
                 if (arrayOfAccounts?.count)! > 0 {
-                    let twitterAccount = arrayOfAccounts?.last as! ACAccount
-                    print("TWITTER ACCOUNTS \(arrayOfAccounts)")
+                    completionHandler(AccountServiceResult.success(arrayOfAccounts as! [ACAccount]))
+                }
+                else {
+                    completionHandler(AccountServiceResult.failure(AccountServiceError.noLinkedAccounts))
                 }
             }
         })
