@@ -49,16 +49,20 @@ class TimelineService {
         postRequest?.perform(handler: {(responseData, urlResponse, error) in
             if error != nil {
                 print("ERROR \(error)")
-            }
-            let json = JSON(data: responseData!)
-            if json.count > 0 {
-                print("COUNT \(json.count)")
-                let newTweets : Array<Tweet> = json.arrayValue.map { Tweet(tweetDictionary: $0.dictionaryObject!)}
                 DispatchQueue.main.async() {
                     completionHandler(
-                        TimelineServiceResult.success(newTweets)
+                        TimelineServiceResult.failure(TimelineServiceError.networkError)
                     )
                 }
+                
+            }
+            let json = JSON(data: responseData!)
+            print("RETURNED COUNT \(json.count) - RETURNED ID \(json.first)- LAST ID \(account.lastViewedTweetId)")
+            let newTweets : Array<Tweet> = json.arrayValue.map { Tweet(tweetDictionary: $0.dictionaryObject!)}
+            DispatchQueue.main.async() {
+                completionHandler(
+                    TimelineServiceResult.success(newTweets)
+                )
             }
         })
     }

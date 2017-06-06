@@ -30,6 +30,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     init(account: Account) {
         self.account = account
         super.init(nibName:nil, bundle:nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didEnterBackground(notification:)),
+            name: .UIApplicationDidEnterBackground,
+            object: nil
+        )
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,6 +78,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData()
         self.refreshControl.endRefreshing()
         self.view.layoutIfNeeded()
+        self.tableView.scrollToRow(at: self.lastViewIndexPath(), at: .top, animated: true)
+        
         // should be scroll to last read
         //self.scrollToBottom()
     }
@@ -98,7 +106,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView,
                    willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
-        self.account.lastViewedTweetId = self.tweets[indexPath.row].id
+        // should be in scrolling delegate
+       // self.account.lastViewedTweetId = self.tweets[indexPath.row].id
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let indexPath = self.tableView.indexPathsForVisibleRows?.first {
+            print("indexpath \(indexPath)")
+            self.account.lastViewedTweetId = self.tweets[indexPath.row].id
+        }
     }
     
     func getTimeLine() {
@@ -106,7 +122,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         account: self.account) { (result : TimelineServiceResult<Array<Tweet>>) in
             switch result  {
             case .success(let tweets):
-                self.tweets = tweets
+                // should be appending
+                let filterResults = FilterService.execute(account: self.account, tweets: tweets)
+                self.tweets += filterResults.filteredTweets
+                print("REMOVED \(filterResults.removedCount)")
                 self.reloadView()
             case .failure(let error):
                 print("ERROR \(error)")
@@ -114,9 +133,28 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func didEnterBackground(notification: Notification) {
+        print("DID ENTER BACKGROUND")
+        self.account.saveAccount()
+    }
+    
     private func scrollToBottom() {
         let indexPath = IndexPath(row: self.tweets.count - 1, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    private func lastViewIndexPath() -> IndexPath {
+        if let lastViewedId = self.account.lastViewedTweetId,
+            let index =  self.tweets.index(where: { $0.id == lastViewedId }) {
+            return IndexPath(row: index, section: 0)
+        }
+        else {
+            return IndexPath(row: (self.tweets.count - 1), section: 0)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

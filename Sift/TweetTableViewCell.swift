@@ -125,7 +125,7 @@ class TweetTableViewCell: UITableViewCell {
         ]
         
         self.tweetContentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|[nameLabel]-(4)-[bodyLabel]|",
+            withVisualFormat: "V:|[nameLabel]-(4)-[bodyLabel]-(0@500)-|",
             options: .alignAllLeading,
             metrics: metrics,
             views: views)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User : NSObject {
     let userName : String
     let name : String
     let profileImageURL : URL?

@@ -27,6 +27,7 @@
 		7921D6441E75F3E000B7A207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7921D6431E75F3E000B7A207 /* Assets.xcassets */; };
 		79A93F131E75F43D00E33EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A93F0F1E75F43D00E33EA9 /* LaunchScreen.storyboard */; };
 		79A93F141E75F43D00E33EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A93F111E75F43D00E33EA9 /* Main.storyboard */; };
+		79A93F161E77800F00E33EA9 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A93F151E77800F00E33EA9 /* FilterService.swift */; };
 		864752C00D10A22A9614197D /* Pods_SiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A67B6C76C70B0F2D0C0D47 /* Pods_SiftTests.framework */; };
 		CD82BB6FF178C573525FB196 /* Pods_FilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B81C4969A4159F449069DE /* Pods_FilterTests.framework */; };
 		E2D7B9B7DD9A49218A60A02C /* Pods_Sift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8247A835D0A18A035AF54482 /* Pods_Sift.framework */; };
@@ -83,6 +84,7 @@
 		7921D6431E75F3E000B7A207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sift/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		79A93F101E75F43D00E33EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Sift/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		79A93F121E75F43D00E33EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Sift/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		79A93F151E77800F00E33EA9 /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = SOURCE_ROOT; };
 		8247A835D0A18A035AF54482 /* Pods_Sift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C48E6C9378FD5BCF169E583 /* Pods-Sift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sift/Pods-Sift.debug.xcconfig"; sourceTree = "<group>"; };
 		90E2FD908F4CDCE94952A143 /* Pods-Filter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filter/Pods-Filter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				7921D62D1E75F35C00B7A207 /* AccountService.swift */,
 				7921D62E1E75F35C00B7A207 /* TimelineService.swift */,
+				79A93F151E77800F00E33EA9 /* FilterService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */,
 				7921D6371E75F38500B7A207 /* OnboardingView.swift in Sources */,
 				7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */,
+				79A93F161E77800F00E33EA9 /* FilterService.swift in Sources */,
 				7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */,
 				7921D63A1E75F39200B7A207 /* QuotedTweetView.swift in Sources */,
 				7921D6301E75F35C00B7A207 /* TimelineService.swift in Sources */,
@@ -721,7 +725,7 @@
 				DEVELOPMENT_TEAM = GJ9R3GJ24B;
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Filter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Sift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -735,7 +739,7 @@
 				DEVELOPMENT_TEAM = GJ9R3GJ24B;
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Filter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kylechronis.Sift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

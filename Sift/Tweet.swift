@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 // need to integrate entities https://dev.twitter.com/overview/api/entities
-class Tweet {
+class Tweet : NSObject {
     static let timestampFormatter : DateFormatter = {
         let timestampFormatter = DateFormatter()
         timestampFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -38,6 +38,8 @@ class Tweet {
         self.retweeted = (tweetDictionary["retweeted"] != nil)
         self.createdAt = Tweet.timestampFormatter.date(from: tweetDictionary["created_at"] as! String)
         self.inReplyToScreenName = tweetDictionary["in_reply_to_screen_name"] as? String
+        //WARNING: FIX ME
+        super.init()
         self.user = User(userDictionary: tweetDictionary["user"] as! Dictionary<String, Any>,
                          tweet: self)
         if let retweetedDictionary = tweetDictionary["retweeted_status"] as? Dictionary<String, Any> {
