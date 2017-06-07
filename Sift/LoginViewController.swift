@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -33,14 +34,17 @@ class LoginViewController: UIViewController {
     }
     
     func didSelectLogin(sender: UIButton) {
-        print("DID SELECT LOGIN")
+        sender.isEnabled = false
         AccountService.getAccounts { (result : AccountServiceResult<Array<ACAccount>>) in
             switch result {
             case .success(let accounts):
+                print("ACCOUNTS \(accounts)")
                 self.presentActionSheet(accounts: accounts)
             case .failure(let error):
+                // TODO:(KC) Handle errors
                 print("ERROR \(error)")
             }
+            sender.isEnabled = true
         }
     }
     
@@ -86,32 +90,42 @@ class LoginViewController: UIViewController {
     }
     
     private func presentActionSheet(accounts: Array<ACAccount>) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionSheetAlert = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
         for (index, account) in accounts.enumerated() {
-            let action = UIAlertAction(title: ("@" + account.username), style: .default) { (alert: UIAlertAction!) -> Void in
+            let action = UIAlertAction(
+                title: ("@" + account.username),
+                style: .default
+            ) { (alert: UIAlertAction!) -> Void in
                 self.didSelectAccount(twitterAccount: accounts[index])
             }
-            alert.addAction(action)
+            actionSheetAlert.addAction(action)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { action in
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .destructive
+        ) { action in
             self.dismiss(animated: true, completion: nil)
         }
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil) // 6
+        actionSheetAlert.addAction(cancelAction)
+        self.present(actionSheetAlert, animated: true, completion: nil)
     }
     
     private func didSelectAccount(twitterAccount: ACAccount) {
         let account = Account(twitterAccount: twitterAccount)
         account.saveAccount()
-        let timelineNavigationController = UINavigationController(
-            rootViewController: TimelineViewController(account: account)
-        )
-        self.present(
-            timelineNavigationController,
-            animated: false,
-            completion: nil
-        )
         
+        //TODO:(KC) Should we check if they have already been through the onboarding flow?
+        let onboardingViewController = OnboardingViewController(
+            viewModel: OnboardingViewModel(account: account)
+        )
+        self.navigationController?.pushViewController(
+            onboardingViewController,
+            animated: true
+        )
     }
 }

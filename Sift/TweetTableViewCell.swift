@@ -57,7 +57,7 @@ class TweetTableViewCell: UITableViewCell {
         actionLabel.minimumScaleFactor = 0.8
         actionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        quotedTweetView.layer.borderColor = UIColor.gray.cgColor
+        quotedTweetView.layer.borderColor = UIColor.gray.withAlphaComponent(0.7).cgColor
         quotedTweetView.layer.borderWidth = 1
         quotedTweetView.layer.cornerRadius = 4
         quotedTweetView.layer.masksToBounds = true

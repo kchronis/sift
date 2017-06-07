@@ -9,9 +9,12 @@
 import UIKit
 
 class OnboardingViewController: UIViewController {
-    let onboardingView : OnboardingView = OnboardingView()
-
-    init() {
+    let viewModel : OnboardingViewModel
+    var currentQuestion: OnboardingViewModel.Question = .needFilter
+    var currentQuestionView : OnboardingQuestionView!
+    
+    init(viewModel: OnboardingViewModel) {
+        self.viewModel = viewModel
         super.init(nibName:nil, bundle:nil)
     }
     
@@ -21,53 +24,81 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // initial setup
         self.view.backgroundColor = UIColor.white
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.onboardingView.backgroundColor = UIColor.white
-        self.onboardingView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.addSubview(onboardingView)
-        
-        self.view.addConstraint(NSLayoutConstraint.init(item: self.onboardingView,
-                                                   attribute: .centerY,
-                                                   relatedBy: .equal,
-                                                   toItem: self.view,
-                                                   attribute: .centerY,
-                                                   multiplier: 1.0,
-                                                   constant: 0.0))
-        self.view.addConstraint(NSLayoutConstraint.init(item: self.onboardingView,
-                                                        attribute: .centerX,
-                                                        relatedBy: .equal,
-                                                        toItem: self.view,
-                                                        attribute: .centerX,
-                                                        multiplier: 1.0,
-                                                        constant: 0.0))
-        //let views = ["onboardingView": self.onboardingView]
-//        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[onboardingView]|",
-//                                                                options: NSLayoutFormatOptions(rawValue: 0),
-//                                                                metrics: nil,
-//                                                                views: views))
-//        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[onboardingView]|",
-//                                                                options: NSLayoutFormatOptions(rawValue: 0),
-//                                                                metrics: nil,
-//                                                                views: views))
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // create first questionView
+        self.currentQuestionView = self.createQuestionView(question: self.currentQuestion)
+        self.currentQuestionView.animateIn()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    */
-
+    
+    private func transitionQuestionView() {
+        if let question = self.currentQuestion.next() {
+            let finishedQuestionView = self.currentQuestionView
+            self.currentQuestion = question
+            self.currentQuestionView = self.createQuestionView(question: question)
+            finishedQuestionView?.animateOut(completionHandler: { (finished) in
+                finishedQuestionView?.removeFromSuperview()
+            })
+            self.currentQuestionView.animateIn()
+        }
+        else {
+            // Finished questions, present timeline
+            self.presentTimeline()
+        }
+    }
+    
+    private func presentTimeline() {
+        let timelineNavigationController = UINavigationController(
+            rootViewController: TimelineViewController(
+                account: self.viewModel.account
+            )
+        )
+        self.present(
+            timelineNavigationController,
+            animated: true,
+            completion: nil
+        )
+    }
+    
+    private func createQuestionView(question: OnboardingViewModel.Question) -> OnboardingQuestionView {
+        let questionView = OnboardingQuestionView(
+            header:self.viewModel.header(question: question),
+            buttonTitles: self.viewModel.buttonTitles(question: question),
+            buttonAlignment: self.questionViewAlignment(for: question),
+            selectionHandler: { [unowned self] (index: Int) in
+                self.viewModel.didSelect(index: index, question: question)
+                self.transitionQuestionView()
+        })
+        questionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(questionView)
+        
+        questionView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        questionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        questionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        questionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        self.view.layoutIfNeeded()
+        
+        return questionView
+    }
+    
+    // HACK:(KC) Couldn't find a better place to retrieve the alignment for the question.
+    private func questionViewAlignment(for question: OnboardingViewModel.Question) -> OnboardingQuestionView.ButtonAlignment {
+        switch question {
+        case .needFilter:
+            return OnboardingQuestionView.ButtonAlignment.horizontal
+        case .filterType:
+            return OnboardingQuestionView.ButtonAlignment.horizontal
+        case .filterTime:
+            return OnboardingQuestionView.ButtonAlignment.vertical
+        }
+    }
 }

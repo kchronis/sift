@@ -27,19 +27,22 @@ class AccountService {
         
         let account = ACAccountStore()
         let accountType = account.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
-        account.requestAccessToAccounts(with: accountType,
-                                        options: nil,
-                                        completion: {(success, error) in
-            if success {
-                let arrayOfAccounts = account.accounts(with: accountType)
-                
-                if (arrayOfAccounts?.count)! > 0 {
-                    completionHandler(AccountServiceResult.success(arrayOfAccounts as! [ACAccount]))
+        account.requestAccessToAccounts(
+            with: accountType,
+            options: nil,
+            completion: {(success, error) in
+                DispatchQueue.main.async {
+                    if success {
+                        let arrayOfAccounts = account.accounts(with: accountType)
+                        
+                        if (arrayOfAccounts?.count)! > 0 {
+                            completionHandler(AccountServiceResult.success(arrayOfAccounts as! [ACAccount]))
+                        }
+                        else {
+                            completionHandler(AccountServiceResult.failure(AccountServiceError.noLinkedAccounts))
+                        }
+                    }
                 }
-                else {
-                    completionHandler(AccountServiceResult.failure(AccountServiceError.noLinkedAccounts))
-                }
-            }
         })
     }
 }

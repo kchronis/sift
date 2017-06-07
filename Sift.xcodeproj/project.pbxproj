@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		602B009C2766C9655FCF10A1 /* Pods_FilterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5B7314CB01CB8BF9AAA5FC /* Pods_FilterUITests.framework */; };
+		7904CCEA1EE7152900B0799D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904CCE91EE7152900B0799D /* OnboardingViewModel.swift */; };
 		790978371E5BB4DF001CC012 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978361E5BB4DF001CC012 /* SiftTests.swift */; };
 		790978421E5BB4DF001CC012 /* SiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978411E5BB4DF001CC012 /* SiftUITests.swift */; };
 		7921D6281E75F31D00B7A207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6271E75F31D00B7A207 /* User.swift */; };
@@ -17,7 +18,7 @@
 		7921D6301E75F35C00B7A207 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62E1E75F35C00B7A207 /* TimelineService.swift */; };
 		7921D6321E75F36E00B7A207 /* UIButton+ BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6311E75F36E00B7A207 /* UIButton+ BackgroundColor.swift */; };
 		7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6331E75F38500B7A207 /* LoginViewController.swift */; };
-		7921D6371E75F38500B7A207 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6341E75F38500B7A207 /* OnboardingView.swift */; };
+		7921D6371E75F38500B7A207 /* OnboardingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6341E75F38500B7A207 /* OnboardingQuestionView.swift */; };
 		7921D6381E75F38500B7A207 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6351E75F38500B7A207 /* OnboardingViewController.swift */; };
 		7921D63A1E75F39200B7A207 /* QuotedTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6391E75F39200B7A207 /* QuotedTweetView.swift */; };
 		7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */; };
@@ -60,6 +61,7 @@
 		361CB8EE833D03CEDC6BA4D6 /* Pods-Sift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sift/Pods-Sift.release.xcconfig"; sourceTree = "<group>"; };
 		6F6EAFC3D1D813AC18943C59 /* Pods-FilterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FilterUITests/Pods-FilterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		76675A21DA1995A4964D5AA7 /* Pods-FilterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FilterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FilterUITests/Pods-FilterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7904CCE91EE7152900B0799D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OnboardingViewModel.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7909781E1E5BB4DF001CC012 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		790978321E5BB4DF001CC012 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		790978361E5BB4DF001CC012 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SiftTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -74,8 +76,8 @@
 		7921D62E1E75F35C00B7A207 /* TimelineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineService.swift; path = Sift/TimelineService.swift; sourceTree = SOURCE_ROOT; };
 		7921D6311E75F36E00B7A207 /* UIButton+ BackgroundColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+ BackgroundColor.swift"; path = "Sift/UIButton+ BackgroundColor.swift"; sourceTree = SOURCE_ROOT; };
 		7921D6331E75F38500B7A207 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Sift/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
-		7921D6341E75F38500B7A207 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingView.swift; path = Sift/OnboardingView.swift; sourceTree = SOURCE_ROOT; };
-		7921D6351E75F38500B7A207 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Sift/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
+		7921D6341E75F38500B7A207 /* OnboardingQuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OnboardingQuestionView.swift; path = Sift/OnboardingQuestionView.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		7921D6351E75F38500B7A207 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OnboardingViewController.swift; path = Sift/OnboardingViewController.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7921D6391E75F39200B7A207 /* QuotedTweetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuotedTweetView.swift; path = Sift/QuotedTweetView.swift; sourceTree = SOURCE_ROOT; };
 		7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = Sift/TimelineViewController.swift; sourceTree = SOURCE_ROOT; };
 		7921D63D1E75F3AD00B7A207 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = Sift/TweetTableViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -146,6 +148,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7904CCE81EE7150A00B0799D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				7921D6351E75F38500B7A207 /* OnboardingViewController.swift */,
+				7921D6341E75F38500B7A207 /* OnboardingQuestionView.swift */,
+				7904CCE91EE7152900B0799D /* OnboardingViewModel.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		790978151E5BB4DF001CC012 = {
 			isa = PBXGroup;
 			children = (
@@ -209,8 +221,8 @@
 		7909784F1E5BC179001CC012 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7904CCE81EE7150A00B0799D /* Onboarding */,
 				7921D6331E75F38500B7A207 /* LoginViewController.swift */,
-				7921D6351E75F38500B7A207 /* OnboardingViewController.swift */,
 				7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */,
 			);
 			name = Controllers;
@@ -220,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				797806D81E623490002AFF86 /* Cells */,
-				7921D6341E75F38500B7A207 /* OnboardingView.swift */,
 				7921D6391E75F39200B7A207 /* QuotedTweetView.swift */,
 			);
 			name = Views;
@@ -559,7 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */,
-				7921D6371E75F38500B7A207 /* OnboardingView.swift in Sources */,
+				7921D6371E75F38500B7A207 /* OnboardingQuestionView.swift in Sources */,
 				7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */,
 				79A93F161E77800F00E33EA9 /* FilterService.swift in Sources */,
 				7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */,
@@ -568,6 +579,7 @@
 				7921D62C1E75F34A00B7A207 /* Account.swift in Sources */,
 				7921D6281E75F31D00B7A207 /* User.swift in Sources */,
 				7921D6381E75F38500B7A207 /* OnboardingViewController.swift in Sources */,
+				7904CCEA1EE7152900B0799D /* OnboardingViewModel.swift in Sources */,
 				7921D6321E75F36E00B7A207 /* UIButton+ BackgroundColor.swift in Sources */,
 				7921D62F1E75F35C00B7A207 /* AccountService.swift in Sources */,
 				7921D6401E75F3B800B7A207 /* AppDelegate.swift in Sources */,
