@@ -41,8 +41,7 @@ class LoginViewController: UIViewController {
                 print("ACCOUNTS \(accounts)")
                 self.presentActionSheet(accounts: accounts)
             case .failure(let error):
-                // TODO:(KC) Handle errors
-                print("ERROR \(error)")
+                self.handle(error: error)
             }
             sender.isEnabled = true
         }
@@ -127,5 +126,21 @@ class LoginViewController: UIViewController {
             onboardingViewController,
             animated: true
         )
+    }
+    
+    private func handle(error: AccountServiceError) {
+        let alert = UIAlertController(
+            title: error.title(),
+            message: error.description(),
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(
+            title: "Ok",
+            style: .cancel
+        ) { action in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
