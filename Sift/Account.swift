@@ -92,7 +92,7 @@ class Account : NSObject, NSCoding {
     
     //MARK: Properties
     let twitterAccount : ACAccount
-    var lastViewedTweetId : Int?
+    var lastViewedTweetId : String?
     
     var filterType : FilterType?
     var filterTime : FilterTime?
@@ -143,7 +143,7 @@ class Account : NSObject, NSCoding {
             return nil
         }
         self.init(accountIdentifier: accountIdentifier)
-        self.lastViewedTweetId = aDecoder.decodeObject(forKey: PropertyKey.lastViewedTweetId) as? Int
+        self.lastViewedTweetId = aDecoder.decodeObject(forKey: PropertyKey.lastViewedTweetId) as? String
         self.filterType = aDecoder.decodeObject(forKey: PropertyKey.filterType) as? FilterType
         self.filterTime = aDecoder.decodeObject(forKey: PropertyKey.filterTime) as? FilterTime
     }

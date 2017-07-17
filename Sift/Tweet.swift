@@ -17,7 +17,7 @@ class Tweet : NSObject {
         timestampFormatter.dateFormat = "E MMM d HH:mm:ss Z yyyy"
         return timestampFormatter
     }()
-    let id : Int
+    let id : String
     let text : String
     let favoriteCount : Int
     let favorited : Bool
@@ -31,7 +31,7 @@ class Tweet : NSObject {
     var user : User!
     
     init(tweetDictionary : Dictionary<String, Any>) {
-        self.id = tweetDictionary["id"] as! Int
+        self.id = tweetDictionary["id_str"] as! String
         self.text = tweetDictionary["text"] as! String
         self.favoriteCount = tweetDictionary["favorite_count"] as! Int
         self.favorited = (tweetDictionary["favorited"] != nil)

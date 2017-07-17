@@ -11,14 +11,9 @@ import Social
 import Accounts
 import SwiftyJSON
 
-// NEED Better error handling
-enum TimelineServiceError: Error {
-    case networkError
-}
-
 enum TimelineServiceResult<T> {
     case success(T)
-    case failure(TimelineServiceError)
+    case failure(String)
 }
 
 typealias TimelineServiceCompletionHandler = (TimelineServiceResult<Array<Tweet>>) -> Void
@@ -30,12 +25,14 @@ class TimelineService {
         account: Account,
         completionHandler: @escaping TimelineServiceCompletionHandler) {
         
-        var parameters = ["include_rts" : "1",
-                          "trim_user" : "0",
-                          "exclude_replies" : "1",
-                          "count" : "300"]
+        var parameters = [
+            "include_rts" : "1",
+            "trim_user" : "0",
+            "exclude_replies" : "1",
+            "count" : "300"
+        ]
         if let lastViewedTweetId = account.lastViewedTweetId {
-            parameters["since_id"] = String(lastViewedTweetId)
+            parameters["since_id"] = lastViewedTweetId
         }
         
         let postRequest = SLRequest(
@@ -47,17 +44,28 @@ class TimelineService {
         postRequest?.account = account.twitterAccount
         
         postRequest?.perform(handler: {(responseData, urlResponse, error) in
-            if error != nil {
-                print("ERROR \(error)")
+            // network error
+            guard (error == nil) else {
                 DispatchQueue.main.async() {
                     completionHandler(
-                        TimelineServiceResult.failure(TimelineServiceError.networkError)
+                        TimelineServiceResult.failure((error?.localizedDescription)!)
                     )
                 }
-                
+                return
             }
+            
             let json = JSON(data: responseData!)
-            print("RETURNED COUNT \(json.count) - RETURNED ID \(json.first)- LAST ID \(account.lastViewedTweetId)")
+            // twitter api error
+            if let errorMessage = json["errors"][0]["message"].string  {
+                DispatchQueue.main.async() {
+                    completionHandler(
+                        TimelineServiceResult.failure(errorMessage)
+                    )
+                }
+                return
+            }
+            
+            print("RETURNED COUNT \(json.count) - RETURNED ID \(String(describing: json.first))- LAST ID \(String(describing: account.lastViewedTweetId))")
             let newTweets : Array<Tweet> = json.arrayValue.map { Tweet(tweetDictionary: $0.dictionaryObject!)}
             DispatchQueue.main.async() {
                 completionHandler(

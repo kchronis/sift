@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 
 class TweetTableViewCell: UITableViewCell {
+    static let reuseIdentifier = "\(TweetTableViewCell.self)"
     let profileImageView = UIImageView()
     let tweetContentView = UIView()
     let nameLabel = UILabel()

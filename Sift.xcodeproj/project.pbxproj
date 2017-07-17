@@ -11,6 +11,8 @@
 		7904CCEA1EE7152900B0799D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904CCE91EE7152900B0799D /* OnboardingViewModel.swift */; };
 		790978371E5BB4DF001CC012 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978361E5BB4DF001CC012 /* SiftTests.swift */; };
 		790978421E5BB4DF001CC012 /* SiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978411E5BB4DF001CC012 /* SiftUITests.swift */; };
+		7914AA7D1EE9E9D40036E143 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */; };
+		791E9B9D1F1D596F00535B2C /* TimelineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */; };
 		7921D6281E75F31D00B7A207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6271E75F31D00B7A207 /* User.swift */; };
 		7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6291E75F33F00B7A207 /* Tweet.swift */; };
 		7921D62C1E75F34A00B7A207 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62B1E75F34A00B7A207 /* Account.swift */; };
@@ -69,6 +71,8 @@
 		7909783D1E5BB4DF001CC012 /* SiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		790978411E5BB4DF001CC012 /* SiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SiftUITests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		790978431E5BB4DF001CC012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = SOURCE_ROOT; };
+		791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineFooterView.swift; sourceTree = SOURCE_ROOT; };
 		7921D6271E75F31D00B7A207 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Sift/User.swift; sourceTree = SOURCE_ROOT; };
 		7921D6291E75F33F00B7A207 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tweet.swift; path = Sift/Tweet.swift; sourceTree = SOURCE_ROOT; };
 		7921D62B1E75F34A00B7A207 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Sift/Account.swift; sourceTree = SOURCE_ROOT; };
@@ -221,9 +225,9 @@
 		7909784F1E5BC179001CC012 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7914AA7B1EE9E9BD0036E143 /* Timeline */,
 				7904CCE81EE7150A00B0799D /* Onboarding */,
 				7921D6331E75F38500B7A207 /* LoginViewController.swift */,
-				7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +249,16 @@
 				7921D6271E75F31D00B7A207 /* User.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		7914AA7B1EE9E9BD0036E143 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */,
+				7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */,
+				791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */,
+			);
+			name = Timeline;
 			sourceTree = "<group>";
 		};
 		797806D81E623490002AFF86 /* Cells */ = {
@@ -572,8 +586,10 @@
 				7921D6361E75F38500B7A207 /* LoginViewController.swift in Sources */,
 				7921D6371E75F38500B7A207 /* OnboardingQuestionView.swift in Sources */,
 				7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */,
+				791E9B9D1F1D596F00535B2C /* TimelineFooterView.swift in Sources */,
 				79A93F161E77800F00E33EA9 /* FilterService.swift in Sources */,
 				7921D63C1E75F39C00B7A207 /* TimelineViewController.swift in Sources */,
+				7914AA7D1EE9E9D40036E143 /* TimelineViewModel.swift in Sources */,
 				7921D63A1E75F39200B7A207 /* QuotedTweetView.swift in Sources */,
 				7921D6301E75F35C00B7A207 /* TimelineService.swift in Sources */,
 				7921D62C1E75F34A00B7A207 /* Account.swift in Sources */,

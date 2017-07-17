@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class OnboardingViewModel {
     enum Question {
         case needFilter, filterType, filterTime

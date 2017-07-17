@@ -10,12 +10,12 @@ import UIKit
 import Social
 import Accounts
 import SwiftyJSON
+import MessageUI
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let timelineURL = URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")
-    let account : Account
-    let tableView : UITableView = UITableView()
-    var lastViewedTweet : Tweet?
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
+    let tableView: UITableView = UITableView()
+    let viewModel: TimelineViewModel
+    var lastViewedTweet: Tweet?
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
@@ -25,10 +25,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         )
         return refreshControl
     }()
-    var tweets = [Tweet]()
     
-    init(account: Account) {
-        self.account = account
+    init(viewModel: TimelineViewModel) {
+        self.viewModel = viewModel
         super.init(nibName:nil, bundle:nil)
         NotificationCenter.default.addObserver(
             self,
@@ -44,44 +43,51 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let footerView = TimelineFooterView(selectionHandler: { [unowned self] in
+            self.sendShareSMS()
+        })
+        footerView.backgroundColor = UIColor.blue
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        // use container to set the size of the table footer
+        let tableFooterViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
+        self.tableView.tableFooterView = tableFooterViewContainer
         self.tableView.allowsSelection = false
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(TweetTableViewCell.self,
-                                forCellReuseIdentifier: "TweetCell")
+        self.tableView.register(
+            TweetTableViewCell.self,
+            forCellReuseIdentifier: TweetTableViewCell.reuseIdentifier
+        )
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        tableFooterViewContainer.addSubview(footerView)
         self.tableView.addSubview(self.refreshControl)
         self.view.addSubview(self.tableView)
         
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|[tableView]|",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: ["tableView": self.tableView]
-            )
-        )
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|[tableView]|",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: ["tableView": self.tableView]
-            )
-        )
+        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        footerView.topAnchor.constraint(equalTo: tableFooterViewContainer.topAnchor).isActive = true
+        footerView.bottomAnchor.constraint(equalTo: tableFooterViewContainer.bottomAnchor).isActive = true
+        footerView.leadingAnchor.constraint(equalTo: tableFooterViewContainer.leadingAnchor).isActive = true
+        footerView.trailingAnchor.constraint(equalTo: tableFooterViewContainer.trailingAnchor).isActive = true
         
         self.getTimeLine()
     }
     
     func reloadView() {
-        self.tableView.reloadData()
         self.refreshControl.endRefreshing()
+        self.tableView.reloadData()
         self.view.layoutIfNeeded()
-        self.tableView.scrollToRow(at: self.lastViewIndexPath(), at: .top, animated: true)
-        
-        // should be scroll to last read
-        //self.scrollToBottom()
+        self.tableView.scrollToRow(
+            at: self.viewModel.lastViewedIndexPath(),
+            at: .top,
+            animated: false
+        )
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -90,15 +96,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tweets.count
+        return self.viewModel.rowCount()
     }
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
-        let row = indexPath.row
-        let tweet : Tweet = self.tweets[row]
-        cell.resetCell(tweet: tweet)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: TweetTableViewCell.reuseIdentifier) as! TweetTableViewCell
+        cell.resetCell(tweet: self.viewModel.tweet(for: indexPath))
         return cell
     }
     
@@ -113,44 +118,42 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if let indexPath = self.tableView.indexPathsForVisibleRows?.first {
             print("indexpath \(indexPath)")
-            self.account.lastViewedTweetId = self.tweets[indexPath.row].id
+            self.viewModel.setLastViewedIndexPath(indexPath: indexPath)
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Track last viewed cell after reload is comeplete 
+        // or should we just mark the center cell as viewed?
+//        if let indexPath = self.tableView.indexPathsForVisibleRows?.first {
+//            print("indexpath \(indexPath)")
+//            let cellRect = self.tableView.rectForRow(at: indexPath)
+//            let completelyVisible = self.tableView.bounds.contains(cellRect)
+//            self.viewModel.setLastViewedIndexPath(indexPath: indexPath)
+//        }
+    }
+    
     func getTimeLine() {
-        TimelineService.getTimeLine(
-        account: self.account) { (result : TimelineServiceResult<Array<Tweet>>) in
-            switch result  {
-            case .success(let tweets):
-                // should be appending
-                let filterResults = FilterService.execute(account: self.account, tweets: tweets)
-                self.tweets += filterResults.filteredTweets
-                print("REMOVED \(filterResults.removedCount)")
-                self.reloadView()
-            case .failure(let error):
-                print("ERROR \(error)")
-            }
+        self.viewModel.getTimeline { [unowned self] (filteredCount: Int) in
+            self.reloadView()
         }
     }
     
     func didEnterBackground(notification: Notification) {
-        print("DID ENTER BACKGROUND")
-        self.account.saveAccount()
+        self.viewModel.account.saveAccount()
     }
     
-    private func scrollToBottom() {
-        let indexPath = IndexPath(row: self.tweets.count - 1, section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    private func sendShareSMS() {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Check out this app <app store link>"
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
-    private func lastViewIndexPath() -> IndexPath {
-        if let lastViewedId = self.account.lastViewedTweetId,
-            let index =  self.tweets.index(where: { $0.id == lastViewedId }) {
-            return IndexPath(row: index, section: 0)
-        }
-        else {
-            return IndexPath(row: (self.tweets.count - 1), section: 0)
-        }
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     deinit {

@@ -57,7 +57,7 @@ class OnboardingViewController: UIViewController {
     private func presentTimeline() {
         let timelineNavigationController = UINavigationController(
             rootViewController: TimelineViewController(
-                account: self.viewModel.account
+                viewModel: TimelineViewModel(account: self.viewModel.account)
             )
         )
         self.present(

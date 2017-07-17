@@ -81,7 +81,6 @@ class OnboardingQuestionView: UIView {
     }
     
     func didSelect(sender: UIButton) {
-        print("Button Index \(sender.tag)")
         self.selectionHandler(sender.tag)
     }
     

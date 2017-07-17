@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         if let account = Account.loadAccount() {
             let timelineNavigationController = UINavigationController(
-                rootViewController: TimelineViewController(account: account)
+                rootViewController: TimelineViewController(
+                    viewModel: TimelineViewModel(account: account
+                    )
+                )
             )
             baseNavigationController.present(
                 timelineNavigationController,
