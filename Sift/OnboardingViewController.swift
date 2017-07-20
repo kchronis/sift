@@ -73,8 +73,14 @@ class OnboardingViewController: UIViewController {
             buttonTitles: self.viewModel.buttonTitles(question: question),
             buttonAlignment: self.questionViewAlignment(for: question),
             selectionHandler: { [unowned self] (index: Int) in
-                self.viewModel.didSelect(index: index, question: question)
-                self.transitionQuestionView()
+                self.viewModel.setFilterForSelection(question: question, index: index)
+                // HACK(KC) early exit for decling filtering
+                if question == .needFilter && index == 1 {
+                    self.presentTimeline()
+                }
+                else {
+                    self.transitionQuestionView()
+                }
         })
         questionView.translatesAutoresizingMaskIntoConstraints = false
         

@@ -22,6 +22,7 @@ class TimelineFooterView : UIView {
     let referButton: UIButton = {
         let referButton = UIButton(type: .system)
         referButton.setTitle("Share", for: .normal)
+        referButton.setTitleColor(UIColor.white, for: .normal)
         referButton.addTarget(
             self,
             action: #selector(didSelect(sender:)),

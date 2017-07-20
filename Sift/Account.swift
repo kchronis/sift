@@ -11,11 +11,14 @@ import Accounts
 
 class Account : NSObject, NSCoding {
     enum FilterType : Int {
+        case none
         case trump
         case politics
         
         func name() -> String {
             switch self {
+            case .none:
+                return ""
             case .trump:
                 return "Just Trump"
             case .politics:
@@ -24,7 +27,7 @@ class Account : NSObject, NSCoding {
         }
         // Note(KC) https://stackoverflow.com/a/24222118/976975
         static  func allNames() -> [String] {
-            var index = 0
+            var index = 1 // skip none
             var names = [String]()
             while let type = FilterType(rawValue: index) {
                 names.append(type.name())
@@ -35,38 +38,37 @@ class Account : NSObject, NSCoding {
     }
     
     enum FilterTime : Int {
+        case none
         case morning
         case afternoon
         case evening
         case allDay
         
         func isActive() -> Bool {
-            let (startDate, endDate) = self.ranges()
-            let now = Date()
-            return (now > startDate && now < endDate)
+            let hour = Calendar.current.component(.hour, from: Date())
+            let filterRange = self.range()
+            return filterRange.contains(hour)
         }
         
-        func ranges() -> (start: Date, end: Date) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
+        private func range() -> CountableClosedRange<Int> {
             switch self {
+            case .none:
+                return 0...(-1) // invalid range
             case .morning:
-                return (start: formatter.date(from: "00:00")!,
-                        end: formatter.date(from: "11:59")!)
+                return 0...11
             case .afternoon:
-                return (start: formatter.date(from: "12:00")!,
-                        end: formatter.date(from: "16:59")!)
+                return 12...16
             case .evening:
-                return (start: formatter.date(from: "17:00")!,
-                        end: formatter.date(from: "23:59")!)
+                return 17...23
             case .allDay:
-                return (start: formatter.date(from: "00:00")!,
-                        end: formatter.date(from: "23:59")!)
+                return 0...23
             }
         }
         
         func name() -> String {
             switch self {
+            case .none:
+                return ""
             case .morning:
                 return "Morning"
             case .afternoon:
@@ -80,7 +82,7 @@ class Account : NSObject, NSCoding {
         
         // Note(KC) https://stackoverflow.com/a/24222118/976975
         static func allNames() -> [String] {
-            var index = 0
+            var index = 1 // skip none
             var names = [String]()
             while let time = FilterTime(rawValue: index) {
                 names.append(time.name())
@@ -94,8 +96,8 @@ class Account : NSObject, NSCoding {
     let twitterAccount : ACAccount
     var lastViewedTweetId : String?
     
-    var filterType : FilterType?
-    var filterTime : FilterTime?
+    var filterType : FilterType = .none
+    var filterTime : FilterTime = .none
     
     //MARK: Types
     struct PropertyKey {
@@ -132,10 +134,10 @@ class Account : NSObject, NSCoding {
     
     //MARK: NSCoding Protocol
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(twitterAccount.identifier, forKey: PropertyKey.twitterAccountIdentifier)
-        aCoder.encode(lastViewedTweetId, forKey: PropertyKey.lastViewedTweetId)
-        aCoder.encode(filterType, forKey: PropertyKey.filterType)
-        aCoder.encode(filterType, forKey: PropertyKey.filterTime)
+        aCoder.encode(self.twitterAccount.identifier, forKey: PropertyKey.twitterAccountIdentifier)
+        aCoder.encode(self.lastViewedTweetId, forKey: PropertyKey.lastViewedTweetId)
+        aCoder.encode(self.filterType.rawValue, forKey: PropertyKey.filterType)
+        aCoder.encode(self.filterTime.rawValue, forKey: PropertyKey.filterTime)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -144,7 +146,7 @@ class Account : NSObject, NSCoding {
         }
         self.init(accountIdentifier: accountIdentifier)
         self.lastViewedTweetId = aDecoder.decodeObject(forKey: PropertyKey.lastViewedTweetId) as? String
-        self.filterType = aDecoder.decodeObject(forKey: PropertyKey.filterType) as? FilterType
-        self.filterTime = aDecoder.decodeObject(forKey: PropertyKey.filterTime) as? FilterTime
+        self.filterType = FilterType(rawValue: aDecoder.decodeInteger(forKey: PropertyKey.filterType))!
+        self.filterTime = FilterTime(rawValue: aDecoder.decodeInteger(forKey: PropertyKey.filterTime))!
     }
 }

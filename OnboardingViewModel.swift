@@ -52,14 +52,18 @@ class OnboardingViewModel {
         }
     }
     
-    func didSelect(index: Int, question: Question) {
+    func setFilterForSelection(question: Question, index: Int) {
+        // TEMP HACK(KC)
+        // after adding the .none enum value, we can no longer use the index.
         switch question {
         case .needFilter:
             break
         case .filterType:
-            self.account.filterType = Account.FilterType(rawValue: index)
+            self.account.filterType = Account.FilterType(rawValue: index + 1)!
+            self.account.saveAccount()
         case .filterTime:
-            self.account.filterTime = Account.FilterTime(rawValue: index)
+            self.account.filterTime = Account.FilterTime(rawValue: index + 1)!
+            self.account.saveAccount()
         }
     }
 }

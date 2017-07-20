@@ -14,6 +14,7 @@ import MessageUI
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
     let tableView: UITableView = UITableView()
+    let loadingWindow: TimelineLoadingWindow = TimelineLoadingWindow()
     let viewModel: TimelineViewModel
     var lastViewedTweet: Tweet?
     lazy var refreshControl: UIRefreshControl = {
@@ -41,12 +42,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fatalError("")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.keyWindow?.addSubview(self.loadingWindow)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let footerView = TimelineFooterView(selectionHandler: { [unowned self] in
             self.sendShareSMS()
         })
-        footerView.backgroundColor = UIColor.blue
+        footerView.backgroundColor = UIColor(red: 70/255, green: 154/255, blue: 233/255, alpha: 1)
         footerView.translatesAutoresizingMaskIntoConstraints = false
         // use container to set the size of the table footer
         let tableFooterViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
@@ -134,8 +140,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func getTimeLine() {
-        self.viewModel.getTimeline { [unowned self] (filteredCount: Int) in
+        self.loadingWindow.present()
+        self.viewModel.getTimeline { [unowned self] (filterResults: String) in
             self.reloadView()
+            self.loadingWindow.beginDismissalAnimation(loadingText: filterResults) {
+                print("finished dismissal")
+            }
         }
     }
     

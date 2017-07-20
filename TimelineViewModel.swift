@@ -9,7 +9,7 @@
 import Foundation
 
 class TimelineViewModel {
-    typealias TimelineCompletionHandler = (Int) -> Void
+    typealias TimelineCompletionHandler = (String) -> Void
     
     let account: Account
     var tweets = [Tweet]()
@@ -25,11 +25,10 @@ class TimelineViewModel {
             case .success(let tweets):
                 let filterResults = FilterService.execute(account: self.account, tweets: tweets)
                 self.tweets.insert(contentsOf: filterResults.filteredTweets, at: 0)
-                print("REMOVED \(filterResults.removedCount)")
-                completionHandler(filterResults.removedCount)
+                completionHandler(self.filterResultsToString(filterResults))
             case .failure(let error):
                 // handle error
-                completionHandler(0)
+                completionHandler("Error")
                 print("ERROR \(error)")
             }
         }
@@ -56,4 +55,14 @@ class TimelineViewModel {
             return IndexPath(row: (self.tweets.count - 1), section: 0)
         }
     }
+    
+    private func filterResultsToString(_ filterResults: FilterService.FilterResult) -> String {
+        if !filterResults.filterEnabled {
+            return "Filtering disabled."
+        }
+        else {
+            return "\(filterResults.removedCount) tweets removed!"
+        }
+    }
+    
 }

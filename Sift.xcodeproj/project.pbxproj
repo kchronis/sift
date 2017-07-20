@@ -13,6 +13,7 @@
 		790978421E5BB4DF001CC012 /* SiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790978411E5BB4DF001CC012 /* SiftUITests.swift */; };
 		7914AA7D1EE9E9D40036E143 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */; };
 		791E9B9D1F1D596F00535B2C /* TimelineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */; };
+		791E9BA01F1EC2F600535B2C /* TimelineLoadingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */; };
 		7921D6281E75F31D00B7A207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6271E75F31D00B7A207 /* User.swift */; };
 		7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6291E75F33F00B7A207 /* Tweet.swift */; };
 		7921D62C1E75F34A00B7A207 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62B1E75F34A00B7A207 /* Account.swift */; };
@@ -73,6 +74,7 @@
 		790978431E5BB4DF001CC012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = SOURCE_ROOT; };
 		791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineFooterView.swift; sourceTree = SOURCE_ROOT; };
+		791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineLoadingWindow.swift; sourceTree = SOURCE_ROOT; };
 		7921D6271E75F31D00B7A207 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Sift/User.swift; sourceTree = SOURCE_ROOT; };
 		7921D6291E75F33F00B7A207 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tweet.swift; path = Sift/Tweet.swift; sourceTree = SOURCE_ROOT; };
 		7921D62B1E75F34A00B7A207 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Sift/Account.swift; sourceTree = SOURCE_ROOT; };
@@ -257,6 +259,7 @@
 				7921D63B1E75F39C00B7A207 /* TimelineViewController.swift */,
 				7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */,
 				791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */,
+				791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				7921D6281E75F31D00B7A207 /* User.swift in Sources */,
 				7921D6381E75F38500B7A207 /* OnboardingViewController.swift in Sources */,
 				7904CCEA1EE7152900B0799D /* OnboardingViewModel.swift in Sources */,
+				791E9BA01F1EC2F600535B2C /* TimelineLoadingWindow.swift in Sources */,
 				7921D6321E75F36E00B7A207 /* UIButton+ BackgroundColor.swift in Sources */,
 				7921D62F1E75F35C00B7A207 /* AccountService.swift in Sources */,
 				7921D6401E75F3B800B7A207 /* AppDelegate.swift in Sources */,
