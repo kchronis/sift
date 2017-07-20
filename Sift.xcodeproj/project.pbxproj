@@ -14,6 +14,7 @@
 		7914AA7D1EE9E9D40036E143 /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */; };
 		791E9B9D1F1D596F00535B2C /* TimelineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */; };
 		791E9BA01F1EC2F600535B2C /* TimelineLoadingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */; };
+		791E9BA51F21505E00535B2C /* FilterWords.plist in Resources */ = {isa = PBXBuildFile; fileRef = 791E9BA41F21505E00535B2C /* FilterWords.plist */; };
 		7921D6281E75F31D00B7A207 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6271E75F31D00B7A207 /* User.swift */; };
 		7921D62A1E75F33F00B7A207 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D6291E75F33F00B7A207 /* Tweet.swift */; };
 		7921D62C1E75F34A00B7A207 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7921D62B1E75F34A00B7A207 /* Account.swift */; };
@@ -75,6 +76,7 @@
 		7914AA7C1EE9E9D40036E143 /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = SOURCE_ROOT; };
 		791E9B9C1F1D596F00535B2C /* TimelineFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineFooterView.swift; sourceTree = SOURCE_ROOT; };
 		791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineLoadingWindow.swift; sourceTree = SOURCE_ROOT; };
+		791E9BA41F21505E00535B2C /* FilterWords.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterWords.plist; sourceTree = SOURCE_ROOT; };
 		7921D6271E75F31D00B7A207 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Sift/User.swift; sourceTree = SOURCE_ROOT; };
 		7921D6291E75F33F00B7A207 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tweet.swift; path = Sift/Tweet.swift; sourceTree = SOURCE_ROOT; };
 		7921D62B1E75F34A00B7A207 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Sift/Account.swift; sourceTree = SOURCE_ROOT; };
@@ -189,13 +191,13 @@
 		790978201E5BB4DF001CC012 /* Sift */ = {
 			isa = PBXGroup;
 			children = (
+				791E9BA31F21502800535B2C /* Resources */,
 				79D708B51E710B0000FEE7BD /* Extensions */,
 				79CB349A1E5D4D0100DD17CC /* Services */,
 				790978511E5BC44E001CC012 /* Models */,
 				790978501E5BC449001CC012 /* Views */,
 				7909784F1E5BC179001CC012 /* Controllers */,
 				7921D63F1E75F3B800B7A207 /* AppDelegate.swift */,
-				7921D6431E75F3E000B7A207 /* Assets.xcassets */,
 				7921D6411E75F3D400B7A207 /* Info.plist */,
 				79A93F0F1E75F43D00E33EA9 /* LaunchScreen.storyboard */,
 				79A93F111E75F43D00E33EA9 /* Main.storyboard */,
@@ -262,6 +264,15 @@
 				791E9B9F1F1EC2F600535B2C /* TimelineLoadingWindow.swift */,
 			);
 			name = Timeline;
+			sourceTree = "<group>";
+		};
+		791E9BA31F21502800535B2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7921D6431E75F3E000B7A207 /* Assets.xcassets */,
+				791E9BA41F21505E00535B2C /* FilterWords.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		797806D81E623490002AFF86 /* Cells */ = {
@@ -422,6 +433,7 @@
 			files = (
 				79A93F131E75F43D00E33EA9 /* LaunchScreen.storyboard in Resources */,
 				7921D6421E75F3D400B7A207 /* Info.plist in Resources */,
+				791E9BA51F21505E00535B2C /* FilterWords.plist in Resources */,
 				7921D6441E75F3E000B7A207 /* Assets.xcassets in Resources */,
 				79A93F141E75F43D00E33EA9 /* Main.storyboard in Resources */,
 			);

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>politics</key>
+	<dict>
+		<key>keywords</key>
+		<array>
+			<string>republican</string>
+			<string>democrat</string>
+			<string>health care</string>
+			<string>obamacare</string>
+			<string>comey</string>
+			<string>north korea</string>
+			<string>putin</string>
+		</array>
+		<key>accounts</key>
+		<array>
+			<string>chucktodd</string>
+		</array>
+	</dict>
+	<key>trump</key>
+	<dict>
+		<key>keywords</key>
+		<array>
+			<string>trump</string>
+			<string>kellyanne</string>
+			<string>potus</string>
+			<string>flotus</string>
+			<string>president</string>
+			<string>bannon</string>
+			<string>sean spicer</string>
+			<string>white house</string>
+			<string>ivanka</string>
+			<string>mar a lago</string>
+			<string>jeff sessions</string>
+			<string>kushner</string>
+		</array>
+		<key>accounts</key>
+		<array>
+			<string>potus</string>
+			<string>flotus</string>
+			<string>realdonaldtrump</string>
+			<string>ivankatrump</string>
+			<string>erictrump</string>
+			<string>donaldjtrumpjr</string>
+		</array>
+	</dict>
+</dict>
+</plist>

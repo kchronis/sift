@@ -9,13 +9,6 @@
 import Foundation
 
 class FilterService {
-    //MARK: Temp
-    // keywords
-    static let trumpKeywords = ["trump", "kellyanne", "potus", "flotus", "president", "bannon", "sean spicer", "white house", "ivanka trump", "mar a lago", "jeff sessions", "kushner"]
-    static let politicsKeywords = ["republicans", "democrats", "health care", "obamacare", "comey", "putin"] + trumpKeywords
-    // twitter accounts
-    static let trumpAccounts = ["potus", "flotus", "realdonaldtrump", "ivankatrump", "erictrump", "donaldjtrumpjr"]
-    static let politicalAccounts = ["chucktodd"]
     
     typealias FilterResult = (filteredTweets: Array<Tweet>, filterEnabled: Bool, removedCount: Int)
     
@@ -46,13 +39,18 @@ class FilterService {
     }
     
     private class func filters(filterType: Account.FilterType) -> (keywords: Array<String>, accounts: Array<String>) {
+        let path = Bundle.main.path(forResource: "FilterWords", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)  as! [String: Dictionary<String, Any>]
+        let trumpFilters: Dictionary = dict["trump"] as! [String: Array<String>]
+        let politicalFilters: Dictionary = dict["politics"] as! [String: Array<String>]
         switch filterType {
         case .none:
             return (keywords: [], accounts: [])
         case .trump:
-            return (FilterService.trumpKeywords, FilterService.trumpAccounts)
+            return (trumpFilters["keywords"]!, trumpFilters["accounts"]!)
         case .politics:
-            return (FilterService.trumpKeywords + FilterService.trumpKeywords, FilterService.politicalAccounts)
+            return (politicalFilters["keywords"]! + trumpFilters["keywords"]!,
+                    politicalFilters["accounts"]! + trumpFilters["accounts"]!)
         }
     }
 }
