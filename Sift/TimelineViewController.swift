@@ -36,6 +36,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             name: .UIApplicationDidEnterBackground,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(willEnterForeground(notification:)),
+            name: .UIApplicationWillEnterForeground,
+            object: nil
+        )
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,11 +95,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
         self.view.layoutIfNeeded()
-        self.tableView.scrollToRow(
-            at: self.viewModel.lastViewedIndexPath(),
-            at: .top,
-            animated: false
-        )
+        // Temp HACK(KC) need to handle error cases (no tweets)
+        if  self.viewModel.tweets.count > 0 {
+            self.tableView.scrollToRow(
+                at: self.viewModel.lastViewedIndexPath(),
+                at: .top,
+                animated: false
+            )
+        }
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -150,7 +159,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func didEnterBackground(notification: Notification) {
+        self.loadingWindow.present()
         self.viewModel.account.saveAccount()
+    }
+    
+    func willEnterForeground(notification: Notification) {
+        self.getTimeLine()
     }
     
     private func sendShareSMS() {

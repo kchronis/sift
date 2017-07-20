@@ -21,7 +21,6 @@ class TimelineLoadingWindow: UIWindow {
     
     let loadingLabel: UILabel = {
         let loadingLabel = UILabel()
-        loadingLabel.text = "Retrieving tweets..." // default value
         loadingLabel.textColor = UIColor.white
         loadingLabel.textAlignment = .center
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +31,6 @@ class TimelineLoadingWindow: UIWindow {
     init() {
         super.init(frame: UIScreen.main.bounds)
         self.windowLevel = UIWindowLevelStatusBar
-        self.isHidden = true
         self.backgroundColor = UIColor(red: 70/255, green: 154/255, blue: 233/255, alpha: 1)
         self.setupLayout()
     }
@@ -42,32 +40,54 @@ class TimelineLoadingWindow: UIWindow {
     }
     
     // MARK: Internal
+    override func didMoveToWindow() {
+        self.resetView()
+    }
+    
     func present() {
         self.isHidden = false
     }
     
     func beginDismissalAnimation(loadingText: String, completionHander: @escaping CompletionHandler) {
-        self.loadingLabel.text = loadingText
-        UIView.animate(
-            withDuration: 0.22,
-            delay: 0.75,
-            options: .curveEaseInOut,
-            animations: {
-                let scaleTransform: CGAffineTransform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-                self.iconImageView.transform = scaleTransform
+        UIView.animate(withDuration: 0.22, animations: {
+            self.loadingLabel.alpha = 0
         }) { (finished) in
-            UIView.animate(withDuration: 0.3, animations: {
-                let scaleTransform: CGAffineTransform = CGAffineTransform(scaleX: 20, y: 20)
-                self.iconImageView.transform = scaleTransform
-                self.alpha = 0
-            }, completion: { [unowned self] (finished) in
-                self.removeFromSuperview()
-                completionHander()
+            UIView.animate(
+                withDuration: 0.22,
+                delay:0.1,
+                options: .curveEaseInOut,
+                animations: {
+                    self.loadingLabel.text = loadingText
+                    self.loadingLabel.alpha = 1
             })
+            UIView.animate(
+                withDuration: 0.22,
+                delay: 0.8,
+                options: .curveEaseInOut,
+                animations: {
+                    let scaleTransform: CGAffineTransform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+                    self.iconImageView.transform = scaleTransform
+            }) { (finished) in
+                UIView.animate(withDuration: 0.3, animations: {
+                    let scaleTransform: CGAffineTransform = CGAffineTransform(scaleX: 20, y: 20)
+                    self.iconImageView.transform = scaleTransform
+                    self.alpha = 0
+                }, completion: { [unowned self] (finished) in
+                    self.resetView()
+                    completionHander()
+                })
+            }
         }
     }
     
     // MARK: Private
+    private func resetView() {
+        self.isHidden = true
+        self.alpha = 1
+        self.iconImageView.transform = CGAffineTransform.identity
+        self.loadingLabel.text = "Retrieving tweets..."
+    }
+    
     private func setupLayout() {
         self.addSubview(self.iconImageView)
         self.addSubview(self.loadingLabel)
