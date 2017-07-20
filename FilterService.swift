@@ -36,8 +36,8 @@ class FilterService {
             predicates.append(NSPredicate(format: "NOT(%K CONTAINS[cd] %@)", "quotedTweet.text",keyword))
         }
         for account in accounts {
-//            predicates.append(NSPredicate(format: "%K != %@", "screen_name", account))
-//            predicates.append(NSPredicate(format: "%K != %@", "in_reply_to_screen_name", account))
+            predicates.append(NSPredicate(format: "%K != %@", "user.userName", account))
+            predicates.append(NSPredicate(format: "%K != %@", "inReplyToScreenName", account))
         }
         
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
