@@ -14,7 +14,11 @@ import MessageUI
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
     let tableView: UITableView = UITableView()
-    let loadingWindow: TimelineLoadingWindow = TimelineLoadingWindow()
+    let loadingWindow: TimelineLoadingWindow = {
+        let loadingWindow = TimelineLoadingWindow()
+        UIApplication.shared.keyWindow?.addSubview(loadingWindow)
+        return loadingWindow
+    }()
     let viewModel: TimelineViewModel
     var lastViewedTweet: Tweet?
     lazy var refreshControl: UIRefreshControl = {
@@ -30,18 +34,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     init(viewModel: TimelineViewModel) {
         self.viewModel = viewModel
         super.init(nibName:nil, bundle:nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didEnterBackground(notification:)),
-            name: .UIApplicationDidEnterBackground,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(willEnterForeground(notification:)),
-            name: .UIApplicationWillEnterForeground,
-            object: nil
-        )
+        self.registerOberservers()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +43,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.keyWindow?.addSubview(self.loadingWindow)
     }
     
     override func viewDidLoad() {
@@ -87,6 +79,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         footerView.bottomAnchor.constraint(equalTo: tableFooterViewContainer.bottomAnchor).isActive = true
         footerView.leadingAnchor.constraint(equalTo: tableFooterViewContainer.leadingAnchor).isActive = true
         footerView.trailingAnchor.constraint(equalTo: tableFooterViewContainer.trailingAnchor).isActive = true
+        
+        // MARK: Temporary
+        let reset = UIBarButtonItem(
+            title: "Reset Filters",
+            style: .plain,
+            target: self,
+            action: #selector(resetFilter)
+        )
+        self.navigationItem.leftBarButtonItem = reset
         
         self.getTimeLine()
     }
@@ -127,7 +128,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                    willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
         // should be in scrolling delegate
-       // self.account.lastViewedTweetId = self.tweets[indexPath.row].id
+        // self.account.lastViewedTweetId = self.tweets[indexPath.row].id
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -138,16 +139,22 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Track last viewed cell after reload is comeplete 
+        // Track last viewed cell after reload is comeplete
         // or should we just mark the center cell as viewed?
-//        if let indexPath = self.tableView.indexPathsForVisibleRows?.first {
-//            print("indexpath \(indexPath)")
-//            let cellRect = self.tableView.rectForRow(at: indexPath)
-//            let completelyVisible = self.tableView.bounds.contains(cellRect)
-//            self.viewModel.setLastViewedIndexPath(indexPath: indexPath)
-//        }
+        //        if let indexPath = self.tableView.indexPathsForVisibleRows?.first {
+        //            print("indexpath \(indexPath)")
+        //            let cellRect = self.tableView.rectForRow(at: indexPath)
+        //            let completelyVisible = self.tableView.bounds.contains(cellRect)
+        //            self.viewModel.setLastViewedIndexPath(indexPath: indexPath)
+        //        }
     }
     
+    func resetFilter() {
+        self.dismiss(
+            animated: false,
+            completion: nil
+        )
+    }
     func getTimeLine() {
         self.loadingWindow.present()
         self.viewModel.getTimeline { [unowned self] (filterResults: String) in
@@ -178,6 +185,21 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func registerOberservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didEnterBackground(notification:)),
+            name: .UIApplicationDidEnterBackground,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(willEnterForeground(notification:)),
+            name: .UIApplicationWillEnterForeground,
+            object: nil
+        )
     }
     
     deinit {

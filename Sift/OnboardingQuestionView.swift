@@ -92,7 +92,10 @@ class OnboardingQuestionView: UIView {
             button.setTitleColor(UIColor.white, for: .normal)
             button.setTitle(title, for: .normal)
             button.tag = index
-            button.setBackgroundColor(color: UIColor.blue, state: .normal)
+            button.setBackgroundColor(
+                color: UIColor(red: 70/255, green: 154/255, blue: 233/255, alpha: 1),
+                state: .normal
+            )
             button.contentEdgeInsets = UIEdgeInsetsMake(10, 25, 10, 25)
             button.addTarget(
                 self,

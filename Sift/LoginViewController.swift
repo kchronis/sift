@@ -22,7 +22,9 @@ class LoginViewController: UIViewController {
         self.logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.signInButton.setTitle("SIGN IN WITH TWITTER", for: .normal)
-        self.signInButton.setBackgroundColor(color: UIColor.blue, state: .normal)
+        self.signInButton.setBackgroundColor(
+            color: UIColor(red: 70/255, green: 154/255, blue: 233/255, alpha: 1),
+            state: .normal)
         self.signInButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         self.signInButton.addTarget(self, action: #selector(didSelectLogin(sender:)), for: .touchUpInside)
         self.signInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +40,6 @@ class LoginViewController: UIViewController {
         AccountService.getAccounts { (result : AccountServiceResult<Array<ACAccount>>) in
             switch result {
             case .success(let accounts):
-                print("ACCOUNTS \(accounts)")
                 self.presentActionSheet(accounts: accounts)
             case .failure(let error):
                 self.handle(error: error)
