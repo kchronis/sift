@@ -59,8 +59,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(
-            TweetTableViewCell.self,
-            forCellReuseIdentifier: TweetTableViewCell.reuseIdentifier
+            TimelineTableViewCell.self,
+            forCellReuseIdentifier: TimelineTableViewCell.reuseIdentifier
         )
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -118,7 +118,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: TweetTableViewCell.reuseIdentifier) as! TweetTableViewCell
+            withIdentifier: TimelineTableViewCell.reuseIdentifier) as! TimelineTableViewCell
         cell.resetCell(tweet: self.viewModel.tweet(for: indexPath))
         return cell
     }

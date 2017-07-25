@@ -24,6 +24,7 @@ class Tweet : NSObject {
     let retweeted : Bool
     var createdAt : Date?
     var inReplyToScreenName : String?
+    var retweetCount : Int
     var retweetedTweet : Tweet?
     var quotedTweet : Tweet?
     // unwrapped optional so user will default to nil, 2 phase initialization is complete and
@@ -38,6 +39,7 @@ class Tweet : NSObject {
         self.retweeted = (tweetDictionary["retweeted"] != nil)
         self.createdAt = Tweet.timestampFormatter.date(from: tweetDictionary["created_at"] as! String)
         self.inReplyToScreenName = tweetDictionary["in_reply_to_screen_name"] as? String
+        self.retweetCount = tweetDictionary["retweet_count"] as! Int
         //WARNING: FIX ME
         super.init()
         self.user = User(userDictionary: tweetDictionary["user"] as! Dictionary<String, Any>,

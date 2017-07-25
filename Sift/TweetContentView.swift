@@ -1,5 +1,5 @@
 //
-//  QuotedTweetView.swift
+//  TweetContentView.swift
 //  Sift
 //
 //  Created by Kyle Chronis on 3/1/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuotedTweetView: UIView {
+class TweetContentView: UIView {
     let nameLabel = UILabel()
     let usernameLabel = UILabel()
     let bodyLabel = UILabel()
@@ -58,8 +58,7 @@ class QuotedTweetView: UIView {
     private func setupConstraints() {
         let imageSize = 48.0
         let horizontalPadding = 8.0
-        let verticalPadding = 10.0
-        let optionalConstraintPriority = 800.0
+        let optionalConstraints = 500.0
         let views = [
             "nameLabel": nameLabel,
             "usernameLabel": usernameLabel,
@@ -68,18 +67,17 @@ class QuotedTweetView: UIView {
         let metrics = [
             "imageSize": imageSize,
             "horizontalPadding": horizontalPadding,
-            "verticalPadding": verticalPadding,
-            "optionalPriority": optionalConstraintPriority
+            "optionalConstraints": optionalConstraints
         ]
         
         self.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-(verticalPadding@optionalPriority)-[nameLabel]-(4)-[bodyLabel]-(verticalPadding@optionalPriority)-|",
+            withVisualFormat: "V:|[nameLabel]-(4@optionalConstraints)-[bodyLabel]|",
             options: .alignAllLeading,
             metrics: metrics,
             views: views)
         )
         self.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-(horizontalPadding)-[nameLabel]-(horizontalPadding)-[usernameLabel]-(>=horizontalPadding)-|",
+            withVisualFormat: "H:|[nameLabel]-(horizontalPadding)-[usernameLabel]-(>=0)-|",
             options: .alignAllTop,
             metrics: metrics,
             views: views)
@@ -91,6 +89,4 @@ class QuotedTweetView: UIView {
             views: views)
         )
     }
-    
-    
 }
